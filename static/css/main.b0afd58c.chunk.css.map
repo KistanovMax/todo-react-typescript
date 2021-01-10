@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/styles/global.css"],"names":[],"mappings":"AAAA,EACE,QAAS,CACT,SACF,CAEA,KACE,gBAAiB,CACjB,aAAc,CACd,oBACF","file":"main.b0afd58c.chunk.css","sourcesContent":["* {\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\n\r\nbody {\r\n  max-width: 1024px;\r\n  margin: 0 auto;\r\n  font-family: 'Roboto';\r\n}\r\n"]}
