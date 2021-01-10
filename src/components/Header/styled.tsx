@@ -12,6 +12,7 @@ export const StyledHeader = styled(Box)`
   box-shadow: 0px 2px 12px ${COLORS.colorShadow};
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  z-index: 1;
 `;
 
 export const Title = styled.p`
