@@ -13,7 +13,7 @@ export default function Header(): ReactElement {
     >
       <Box display="flex" alignItems="center">
         <Logo src={logo} alt="Logo" />
-        <Title>Todo App</Title>
+        <Title>ToDo App</Title>
       </Box>
       <CurrentDate />
     </StyledHeader>

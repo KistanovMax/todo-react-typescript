@@ -6,7 +6,7 @@ export const StyledDate = styled(Box)`
   height: 64px;
   border-radius: 5px;
   color: ${COLORS.colorDark};
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   margin-right: 20px;
 `;

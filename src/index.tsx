@@ -2,6 +2,7 @@ import React, { ReactElement } from "react";
 import ReactDOM from "react-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import NewTodoModal from "./components/NewTodoModal/NewTodoModal";
 import TodoList from "./components/TodoList/TodoList";
 
 import { TODOS } from "./constants/index";
@@ -13,6 +14,7 @@ export default function App(): ReactElement {
     <>
       <Header />
       <TodoList todos={TODOS} />
+      <NewTodoModal />
       <Footer />
     </>
   );

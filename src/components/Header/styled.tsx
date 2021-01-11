@@ -13,6 +13,7 @@ export const StyledHeader = styled(Box)`
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   z-index: 1;
+  user-select: none;
 `;
 
 export const Title = styled.p`

@@ -16,10 +16,11 @@ export default function CurrentDate(): ReactElement {
     "November",
     "December",
   ];
+
   const date = new Date();
-  const currentDate = `${
-    monthArr[date.getMonth()]
-  }, ${date.getDate()} ${date.getFullYear()}`;
+  const currentDate = `${monthArr[
+    date.getMonth()
+  ].toUpperCase()}, ${date.getDate()} ${date.getFullYear()}`;
 
   return (
     <StyledDate display="flex" alignItems="center">
