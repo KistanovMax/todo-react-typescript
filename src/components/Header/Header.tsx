@@ -13,7 +13,9 @@ export default function Header(): ReactElement {
     >
       <Box display="flex" alignItems="center">
         <Logo src={logo} alt="Logo" />
-        <Title>ToDo App</Title>
+        <Title variant="h5" color="primary">
+          ToDo App
+        </Title>
       </Box>
       <CurrentDate />
     </StyledHeader>

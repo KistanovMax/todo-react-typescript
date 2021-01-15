@@ -26,7 +26,11 @@ export default function NewTodoModal(): ReactElement {
       >
         <ModalContent>
           <ModalTitle id="simple-modal-title">New Todo</ModalTitle>
-          <StyledTextField color="secondary" label="ToDo" variant="outlined" />
+          <StyledTextField
+            color="primary"
+            label="What you need to do ?"
+            variant="outlined"
+          />
           <SubmitButton
             onClick={handleClose}
             color="primary"

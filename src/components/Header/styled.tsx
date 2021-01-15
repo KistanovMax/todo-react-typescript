@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Box } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import { COLORS } from "../../styles/colors";
 
 export const StyledHeader = styled(Box)`
@@ -16,11 +16,9 @@ export const StyledHeader = styled(Box)`
   user-select: none;
 `;
 
-export const Title = styled.p`
-  margin-left: 20px;
-  color: ${COLORS.colorDark};
-  font-size: 26px;
-  font-weight: 500;
+export const Title = styled(Typography)`
+  margin-left: 20px !important;
+  font-weight: 500 !important;
 `;
 
 export const Logo = styled.img`

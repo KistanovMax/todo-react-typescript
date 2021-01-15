@@ -14,6 +14,7 @@ import {
 interface TodoItem {
   id: number;
   text: string;
+  important: boolean;
 }
 
 export default function TodoItem({ id, text }: TodoItem): ReactElement {
@@ -27,8 +28,6 @@ export default function TodoItem({ id, text }: TodoItem): ReactElement {
   const handleImportant = () => {
     setIsImportant(!isImportant);
   };
-
-  console.log(isImportant);
 
   return (
     <StyledItem
