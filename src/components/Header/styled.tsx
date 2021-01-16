@@ -17,12 +17,12 @@ export const StyledHeader = styled(Box)`
 `;
 
 export const Title = styled(Typography)`
-  margin-left: 20px !important;
+  margin-left: 10px !important;
   font-weight: 500 !important;
 `;
 
 export const Logo = styled.img`
-  margin-left: 20px;
+  margin-left: 10px;
   width: 50px;
   height: 50px;
 `;

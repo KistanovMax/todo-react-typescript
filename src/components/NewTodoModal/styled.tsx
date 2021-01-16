@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { Box, Button, Modal, TextField } from "@material-ui/core";
+import { Box, Button, Checkbox, Modal, TextField } from "@material-ui/core";
 import { COLORS } from "../../styles/colors";
+import { KeyboardDateTimePicker } from "@material-ui/pickers";
 
 export const StyledModal = styled(Modal)`
   display: flex;
@@ -11,30 +12,53 @@ export const StyledModal = styled(Modal)`
 
 export const ModalContent = styled(Box)`
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-around;
   align-items: center;
   background: ${COLORS.colorWhite};
   color: ${COLORS.colorDark};
-  min-width: 350px;
-  max-width: 500px;
-  min-height: 400px;
-  max-height: 500px;
+  width: 90%;
+  max-width: 900px;
+  min-height: 300px;
   outline: none;
   border-radius: 5px;
   user-select: none;
 `;
 
 export const ModalTitle = styled.p`
-  font-size: 20px;
-  margin-top: 20px;
+  font-size: 18px;
 `;
 
 export const StyledTextField = styled(TextField)`
   width: 95%;
   border-radius: 5px;
+  input {
+    color: ${COLORS.colorDark};
+  }
+`;
+
+export const StyledKeyboardDateTimePicker = styled(KeyboardDateTimePicker)`
+  width: 95%;
+  border-radius: 5px;
+  button {
+    color: ${COLORS.colorGreen} !important;
+  }
+  input {
+    color: ${COLORS.colorDark} !important;
+  }
+`;
+
+export const StyledCheckbox = styled(Checkbox)`
+  color: ${COLORS.colorGreen} !important;
+`;
+
+export const ButtonsBox = styled(Box)`
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
 `;
 
 export const SubmitButton = styled(Button)`
-  margin-bottom: 20px !important;
+  background: ${COLORS.colorGreen} !important;
+  color: ${COLORS.colorWhite} !important;
 `;

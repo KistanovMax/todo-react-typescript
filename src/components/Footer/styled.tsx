@@ -13,5 +13,5 @@ export const StyledFooter = styled(Box)`
 export const AddButton = styled(Fab)`
   background: ${COLORS.colorGreen} !important;
   color: ${COLORS.colorDark}!important;
-  right: 20px;
+  right: 10px;
 `;

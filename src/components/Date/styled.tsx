@@ -8,5 +8,5 @@ export const StyledDate = styled(Box)`
   color: ${COLORS.colorDark};
   font-size: 16px;
   font-weight: 500;
-  margin-right: 20px;
+  margin-right: 10px;
 `;

@@ -4,7 +4,7 @@ import TodoItem from "../TodoItem/TodoItem";
 import { StyledList } from "./styled";
 
 interface TodoList {
-  todos: any[]; // eslint-disable-line
+  todos: { id: number; text: string; important: boolean }[];
 }
 
 export default function TodoList({ todos }: TodoList): ReactElement {
