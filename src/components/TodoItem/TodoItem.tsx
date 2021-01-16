@@ -9,17 +9,41 @@ import {
   StyledDeleteIcon,
   ImportantIcon,
   ImportantText,
+  DateTimeBox,
+  DateTime,
 } from "./styled";
 
 interface TodoItem {
   id: number;
   text: string;
+  date: string;
+  time: string;
   important: boolean;
 }
 
-export default function TodoItem({ id, text }: TodoItem): ReactElement {
+export default function TodoItem({
+  id,
+  text,
+  date,
+  time,
+}: TodoItem): ReactElement {
   const [checked, setChecked] = useState(false);
   const [isImportant, setIsImportant] = useState(false);
+
+  const monthArr = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   const handleChecked = () => {
     setChecked(!checked);
@@ -28,6 +52,11 @@ export default function TodoItem({ id, text }: TodoItem): ReactElement {
   const handleImportant = () => {
     setIsImportant(!isImportant);
   };
+
+  const day = Number(date.substr(0, 2)) * 1;
+  const month = monthArr[Number(date.substr(3, 2)) - 1];
+  const year = date.substr(6, 4);
+  const todoDate = `${day} ${month} ${year}`;
 
   return (
     <StyledItem
@@ -51,6 +80,14 @@ export default function TodoItem({ id, text }: TodoItem): ReactElement {
         </IconButton>
       </Box>
       {isImportant && <ImportantText>Important</ImportantText>}
+      <DateTimeBox important={isImportant ? "dark" : "yellow"}>
+        <DateTime>
+          {todoDate}{" "}
+          <p>
+            <b>{time}</b>
+          </p>
+        </DateTime>
+      </DateTimeBox>
     </StyledItem>
   );
 }

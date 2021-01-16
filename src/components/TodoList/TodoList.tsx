@@ -4,7 +4,13 @@ import TodoItem from "../TodoItem/TodoItem";
 import { StyledList } from "./styled";
 
 interface TodoList {
-  todos: { id: number; text: string; important: boolean }[];
+  todos: {
+    id: number;
+    text: string;
+    date: string;
+    time: string;
+    important: boolean;
+  }[];
 }
 
 export default function TodoList({ todos }: TodoList): ReactElement {
@@ -15,6 +21,8 @@ export default function TodoList({ todos }: TodoList): ReactElement {
           key={todo.id}
           id={todo.id}
           text={todo.text}
+          date={todo.date}
+          time={todo.time}
           important={todo.important}
         />
       ))}

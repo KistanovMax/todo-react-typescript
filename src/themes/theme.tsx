@@ -11,5 +11,3 @@ export const MAIN_THEME = createMuiTheme({
     },
   },
 });
-
-console.log(MAIN_THEME);
