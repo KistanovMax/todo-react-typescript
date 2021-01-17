@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Box, Button, FormControlLabel } from "@material-ui/core";
+
+import ModalConText from "../../context";
 
 import {
   StyledModal,
@@ -12,18 +14,19 @@ import {
   SubmitButton,
 } from "./styled";
 
-export default function NewTodoModal({ open, handleAdd, handleClose, handleText }) {
+export default function NewTodoModal({ handleAdd, handleClose, todos }) {
+  const { open } = useContext(ModalConText);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [important, setImportant] = useState(false);
+  const [text, setText] = useState("");
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
-  const handleImportant = () => {
-    setImportant(true);
-  };
+  useEffect(() => setText(""), [todos]);
 
+  const id = todos.length + 1;
   let date = "";
   let time = "";
 
@@ -37,7 +40,14 @@ export default function NewTodoModal({ open, handleAdd, handleClose, handleText 
       <StyledModal open={open} onClose={handleClose} aria-labelledby="simple-modal-title">
         <ModalContent>
           <ModalTitle id="simple-modal-title">NEW TODO</ModalTitle>
-          <StyledTextField onChange={handleText} color="primary" variant="outlined" label="What you need to do ?" />
+          <StyledTextField
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+            color="primary"
+            variant="outlined"
+            label="What you need to do ?"
+          />
           <StyledKeyboardDateTimePicker
             autoOk
             inputVariant="outlined"
@@ -51,7 +61,7 @@ export default function NewTodoModal({ open, handleAdd, handleClose, handleText 
           <Box display="flex" justifyContent="space-between" width="95%">
             <FormControlLabel
               value="end"
-              control={<StyledCheckbox onChange={handleImportant} />}
+              control={<StyledCheckbox onChange={() => setImportant(true)} />}
               label="Important"
               labelPlacement="end"
             />
@@ -59,7 +69,7 @@ export default function NewTodoModal({ open, handleAdd, handleClose, handleText 
               <Button onClick={handleClose} color="primary" variant="outlined" size="small">
                 Cancel
               </Button>
-              <SubmitButton onClick={() => handleAdd(date, time, important)} variant="contained" size="small">
+              <SubmitButton onClick={() => handleAdd(id, text, date, time, important)} variant="contained" size="small">
                 Save
               </SubmitButton>
             </ButtonsBox>

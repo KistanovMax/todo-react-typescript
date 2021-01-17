@@ -1,45 +1,34 @@
-import React, { useState } from "react";
-import NewTodoModal from "../NewTodoModal/NewTodoModal";
+import React, { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addTodo, deleteTodo } from "../../redux/actions/actions";
 
 import TodoItem from "../TodoItem/TodoItem";
+import NewTodoModal from "../NewTodoModal/NewTodoModal";
+import ModalConText from "../../context";
+
 import { StyledList } from "./styled";
 
-export default function TodoList({ todos, open, setOpen }) {
-  const [data, setData] = useState(todos);
-  const [text, setText] = useState("");
+export default function TodoList() {
+  const { setOpen } = useContext(ModalConText);
+  const todos = useSelector((state) => state.Data);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleText = (e) => {
-    setText(e.target.value);
-  };
-
-  const handleAdd = (date, time, important) => {
+  const dispatch = useDispatch();
+  const handleAdd = (todos, text, date, time, important) => {
     if (text) {
-      const newTodo = {
-        id: data.length + 1,
-        text,
-        date,
-        time,
-        important,
-      };
-      setData([...data, newTodo]);
-      setText("");
+      dispatch(addTodo(todos, text, date, time, important));
       handleClose();
     }
   };
 
-  const handleDelete = (id) => {
-    const newData = data.filter((el) => el.id !== id);
-    setData([...newData]);
-  };
+  const handleDelete = (id) => dispatch(deleteTodo(id));
+
+  const handleClose = () => setOpen(false);
 
   return (
     <>
+      <NewTodoModal handleAdd={handleAdd} handleClose={handleClose} todos={todos} />
       <StyledList display="flex" flexDirection="column" alignItems="center">
-        {data.map((todo) => (
+        {todos.map((todo) => (
           <TodoItem
             key={todo.id}
             id={todo.id}
@@ -51,7 +40,6 @@ export default function TodoList({ todos, open, setOpen }) {
           />
         ))}
       </StyledList>
-      <NewTodoModal open={open} handleAdd={handleAdd} handleClose={handleClose} handleText={handleText} />
     </>
   );
 }

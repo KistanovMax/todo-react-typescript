@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { StyledDate } from "./styled";
 
 export default function CurrentDate() {
