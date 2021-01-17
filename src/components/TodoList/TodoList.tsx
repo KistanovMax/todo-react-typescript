@@ -17,17 +17,19 @@ export default function TodoList({
   setOpen,
 }: TodoListProps): ReactElement {
   const [data, setData] = useState(todos);
+  const [text, setText] = useState("");
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleAdd = (
-    text: string,
-    date: string,
-    time: string,
-    important: boolean
-  ) => {
+  const handleText = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setText(e.target.value);
+  };
+
+  const handleAdd = (date: string, time: string, important: boolean) => {
     if (text) {
       const newTodo = {
         id: data.length + 1,
@@ -37,6 +39,7 @@ export default function TodoList({
         important,
       };
       setData([...data, newTodo]);
+      setText("");
       handleClose();
     }
   };
@@ -65,6 +68,7 @@ export default function TodoList({
         open={open}
         handleAdd={handleAdd}
         handleClose={handleClose}
+        handleText={handleText}
       />
     </>
   );

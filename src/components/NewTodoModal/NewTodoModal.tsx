@@ -14,32 +14,22 @@ import {
 
 interface NewTodoModalProps {
   open: boolean;
-  handleAdd: (
-    text: string,
-    date: string,
-    time: string,
-    important: boolean
-  ) => void;
+  handleAdd: (date: string, time: string, important: boolean) => void;
   handleClose: () => void;
+  handleText: (e: { target: { value: React.SetStateAction<string> } }) => void;
 }
 
 export default function NewTodoModal({
   open,
   handleAdd,
   handleClose,
+  handleText,
 }: NewTodoModalProps): ReactElement {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [text, setText] = useState("");
   const [important, setImportant] = useState(false);
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
-  };
-
-  const handleText = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setText(e.target.value);
   };
 
   const handleImportant = () => {
@@ -96,7 +86,7 @@ export default function NewTodoModal({
                 Cancel
               </Button>
               <SubmitButton
-                onClick={() => handleAdd(text, date, time, important)}
+                onClick={() => handleAdd(date, time, important)}
                 variant="contained"
                 size="small"
               >
