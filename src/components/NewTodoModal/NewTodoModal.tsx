@@ -12,28 +12,47 @@ import {
   SubmitButton,
 } from "./styled";
 
-interface NewTodoModal {
+interface NewTodoModalProps {
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleAdd: (
+    text: string,
+    date: string,
+    time: string,
+    important: boolean
+  ) => void;
+  handleClose: () => void;
 }
 
 export default function NewTodoModal({
   open,
-  setOpen,
-}: NewTodoModal): ReactElement {
+  handleAdd,
+  handleClose,
+}: NewTodoModalProps): ReactElement {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleSaveTodo = () => {
-    ("");
-  };
+  const [text, setText] = useState("");
+  const [important, setImportant] = useState(false);
 
   const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
   };
+
+  const handleText = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setText(e.target.value);
+  };
+
+  const handleImportant = () => {
+    setImportant(true);
+  };
+
+  let date = "";
+  let time = "";
+
+  if (selectedDate) {
+    date = selectedDate.toLocaleDateString();
+    time = selectedDate.toLocaleTimeString().substr(0, 5);
+  }
 
   return (
     <Box>
@@ -45,6 +64,7 @@ export default function NewTodoModal({
         <ModalContent>
           <ModalTitle id="simple-modal-title">NEW TODO</ModalTitle>
           <StyledTextField
+            onChange={handleText}
             color="primary"
             variant="outlined"
             label="What you need to do ?"
@@ -62,7 +82,7 @@ export default function NewTodoModal({
           <Box display="flex" justifyContent="space-between" width="95%">
             <FormControlLabel
               value="end"
-              control={<StyledCheckbox />}
+              control={<StyledCheckbox onChange={handleImportant} />}
               label="Important"
               labelPlacement="end"
             />
@@ -76,7 +96,7 @@ export default function NewTodoModal({
                 Cancel
               </Button>
               <SubmitButton
-                onClick={handleSaveTodo}
+                onClick={() => handleAdd(text, date, time, important)}
                 variant="contained"
                 size="small"
               >

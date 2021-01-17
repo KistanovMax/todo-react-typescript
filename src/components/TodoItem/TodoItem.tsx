@@ -13,12 +13,13 @@ import {
   DateTime,
 } from "./styled";
 
-interface TodoItem {
+interface TodoItemProps {
   id: number;
   text: string;
   date: string;
   time: string;
   important: boolean;
+  handleDelete: (id: number) => void;
 }
 
 export default function TodoItem({
@@ -26,9 +27,11 @@ export default function TodoItem({
   text,
   date,
   time,
-}: TodoItem): ReactElement {
+  important,
+  handleDelete,
+}: TodoItemProps): ReactElement {
   const [checked, setChecked] = useState(false);
-  const [isImportant, setIsImportant] = useState(false);
+  const [isImportant, setIsImportant] = useState(important);
 
   const monthArr = [
     "January",
@@ -64,7 +67,6 @@ export default function TodoItem({
       justifyContent="space-between"
       alignItems="center"
       important={isImportant ? "yellow" : "dark"}
-      onClick={() => console.log(id, text)}
     >
       <Box display="flex" alignItems="center">
         <IconButton onClick={handleImportant}>
@@ -75,14 +77,18 @@ export default function TodoItem({
 
       <Box>
         <StyledCheckbox checked={checked} onChange={handleChecked} />
-        <IconButton disabled={!checked} aria-label="delete">
+        <IconButton
+          onClick={() => handleDelete(id)}
+          disabled={!checked}
+          aria-label="delete"
+        >
           {checked ? <StyledDeleteIcon /> : <DeleteIcon />}
         </IconButton>
       </Box>
       {isImportant && <ImportantText>Important</ImportantText>}
       <DateTimeBox important={isImportant ? "dark" : "yellow"}>
         <DateTime>
-          {todoDate}{" "}
+          {todoDate}
           <p>
             <b>{time}</b>
           </p>

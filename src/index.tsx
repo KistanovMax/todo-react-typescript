@@ -7,10 +7,9 @@ import locale from "date-fns/locale/en-GB";
 
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import NewTodoModal from "./components/NewTodoModal/NewTodoModal";
 import TodoList from "./components/TodoList/TodoList";
 
-import { TODOS } from "./constants/index";
+import { TODOS } from "./api/data";
 
 import { MAIN_THEME } from "./themes/theme";
 import "./styles/global.css";
@@ -26,9 +25,8 @@ export default function App(): ReactElement {
     <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
       <ThemeProvider theme={MAIN_THEME}>
         <Header />
-        <TodoList todos={TODOS} />
+        <TodoList todos={TODOS} open={open} setOpen={setOpen} />
         <Footer handleOpen={handleOpen} />
-        <NewTodoModal open={open} setOpen={setOpen} />
       </ThemeProvider>
     </MuiPickersUtilsProvider>
   );
