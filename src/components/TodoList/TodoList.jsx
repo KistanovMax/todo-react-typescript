@@ -1,21 +1,10 @@
-import React, { ReactElement, useState } from "react";
-import { Todo } from "../../types";
+import React, { useState } from "react";
 import NewTodoModal from "../NewTodoModal/NewTodoModal";
 
 import TodoItem from "../TodoItem/TodoItem";
 import { StyledList } from "./styled";
 
-interface TodoListProps {
-  todos: Todo[];
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export default function TodoList({
-  todos,
-  open,
-  setOpen,
-}: TodoListProps): ReactElement {
+export default function TodoList({ todos, open, setOpen }) {
   const [data, setData] = useState(todos);
   const [text, setText] = useState("");
 
@@ -23,13 +12,11 @@ export default function TodoList({
     setOpen(false);
   };
 
-  const handleText = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
+  const handleText = (e) => {
     setText(e.target.value);
   };
 
-  const handleAdd = (date: string, time: string, important: boolean) => {
+  const handleAdd = (date, time, important) => {
     if (text) {
       const newTodo = {
         id: data.length + 1,
@@ -44,8 +31,8 @@ export default function TodoList({
     }
   };
 
-  const handleDelete = (id: number) => {
-    const newData = data.filter((el) => el.id != id);
+  const handleDelete = (id) => {
+    const newData = data.filter((el) => el.id !== id);
     setData([...newData]);
   };
 
@@ -64,12 +51,7 @@ export default function TodoList({
           />
         ))}
       </StyledList>
-      <NewTodoModal
-        open={open}
-        handleAdd={handleAdd}
-        handleClose={handleClose}
-        handleText={handleText}
-      />
+      <NewTodoModal open={open} handleAdd={handleAdd} handleClose={handleClose} handleText={handleText} />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { StyledDate } from "./styled";
 
-export default function CurrentDate(): ReactElement {
+export default function CurrentDate() {
   const monthArr = [
     "January",
     "February",
@@ -18,9 +18,7 @@ export default function CurrentDate(): ReactElement {
   ];
 
   const date = new Date();
-  const currentDate = `${monthArr[
-    date.getMonth()
-  ].toUpperCase()}, ${date.getDate()} ${date.getFullYear()}`;
+  const currentDate = `${monthArr[date.getMonth()].toUpperCase()}, ${date.getDate()} ${date.getFullYear()}`;
 
   return (
     <StyledDate display="flex" alignItems="center">

@@ -1,16 +1,12 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { Box } from "@material-ui/core";
 import { StyledHeader, Title, Logo } from "./styled";
 import logo from "../../assets/icons/logo.svg";
 import CurrentDate from "../Date/Date";
 
-export default function Header(): ReactElement {
+export default function Header() {
   return (
-    <StyledHeader
-      display="flex"
-      alignItems="center"
-      justifyContent="space-between"
-    >
+    <StyledHeader display="flex" alignItems="center" justifyContent="space-between">
       <Box display="flex" alignItems="center">
         <Logo src={logo} alt="Logo" />
         <Title variant="h5" color="primary">

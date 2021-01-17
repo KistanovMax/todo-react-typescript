@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { useState } from "react";
 import { Box, Button, FormControlLabel } from "@material-ui/core";
 
 import {
@@ -12,23 +12,11 @@ import {
   SubmitButton,
 } from "./styled";
 
-interface NewTodoModalProps {
-  open: boolean;
-  handleAdd: (date: string, time: string, important: boolean) => void;
-  handleClose: () => void;
-  handleText: (e: { target: { value: React.SetStateAction<string> } }) => void;
-}
-
-export default function NewTodoModal({
-  open,
-  handleAdd,
-  handleClose,
-  handleText,
-}: NewTodoModalProps): ReactElement {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+export default function NewTodoModal({ open, handleAdd, handleClose, handleText }) {
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [important, setImportant] = useState(false);
 
-  const handleDateChange = (date: Date | null) => {
+  const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
@@ -46,19 +34,10 @@ export default function NewTodoModal({
 
   return (
     <Box>
-      <StyledModal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-      >
+      <StyledModal open={open} onClose={handleClose} aria-labelledby="simple-modal-title">
         <ModalContent>
           <ModalTitle id="simple-modal-title">NEW TODO</ModalTitle>
-          <StyledTextField
-            onChange={handleText}
-            color="primary"
-            variant="outlined"
-            label="What you need to do ?"
-          />
+          <StyledTextField onChange={handleText} color="primary" variant="outlined" label="What you need to do ?" />
           <StyledKeyboardDateTimePicker
             autoOk
             inputVariant="outlined"
@@ -77,19 +56,10 @@ export default function NewTodoModal({
               labelPlacement="end"
             />
             <ButtonsBox>
-              <Button
-                onClick={handleClose}
-                color="primary"
-                variant="outlined"
-                size="small"
-              >
+              <Button onClick={handleClose} color="primary" variant="outlined" size="small">
                 Cancel
               </Button>
-              <SubmitButton
-                onClick={() => handleAdd(date, time, important)}
-                variant="contained"
-                size="small"
-              >
+              <SubmitButton onClick={() => handleAdd(date, time, important)} variant="contained" size="small">
                 Save
               </SubmitButton>
             </ButtonsBox>

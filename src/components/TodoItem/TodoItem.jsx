@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { useState } from "react";
 
 import { Box, IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -13,23 +13,7 @@ import {
   DateTime,
 } from "./styled";
 
-interface TodoItemProps {
-  id: number;
-  text: string;
-  date: string;
-  time: string;
-  important: boolean;
-  handleDelete: (id: number) => void;
-}
-
-export default function TodoItem({
-  id,
-  text,
-  date,
-  time,
-  important,
-  handleDelete,
-}: TodoItemProps): ReactElement {
+export default function TodoItem({ id, text, date, time, important, handleDelete }) {
   const [checked, setChecked] = useState(false);
   const [isImportant, setIsImportant] = useState(important);
 
@@ -77,11 +61,7 @@ export default function TodoItem({
 
       <Box>
         <StyledCheckbox checked={checked} onChange={handleChecked} />
-        <IconButton
-          onClick={() => handleDelete(id)}
-          disabled={!checked}
-          aria-label="delete"
-        >
+        <IconButton onClick={() => handleDelete(id)} disabled={!checked} aria-label="delete">
           {checked ? <StyledDeleteIcon /> : <DeleteIcon />}
         </IconButton>
       </Box>

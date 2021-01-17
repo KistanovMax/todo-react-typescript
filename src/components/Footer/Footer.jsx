@@ -1,12 +1,8 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import AddIcon from "@material-ui/icons/Add";
 import { AddButton, StyledFooter } from "./styled";
 
-interface Footer {
-  handleOpen: () => void;
-}
-
-export default function Footer({ handleOpen }: Footer): ReactElement {
+export default function Footer({ handleOpen }) {
   return (
     <StyledFooter display="flex" alignItems="center" justifyContent="flex-end">
       <AddButton onClick={handleOpen} aria-label="add">

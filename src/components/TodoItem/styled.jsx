@@ -7,14 +7,10 @@ import LabelImportantRoundedIcon from "@material-ui/icons/LabelImportantRounded"
 
 export const StyledItem = styled(Box)`
   margin-bottom: 25px;
-  background: ${(props: { important: string }) =>
-    props.important === "yellow" && COLORS.colorYellow} !important;
-  background: ${(props: { important: string }) =>
-    props.important === "dark" && COLORS.colorDark} !important;
-  color: ${(props: { important: string }) =>
-    props.important === "yellow" && COLORS.colorDark} !important;
-  color: ${(props: { important: string }) =>
-    props.important === "dark" && COLORS.colorWhite} !important;
+  background: ${(props) => props.important === "yellow" && COLORS.colorYellow} !important;
+  background: ${(props) => props.important === "dark" && COLORS.colorDark} !important;
+  color: ${(props) => props.important === "yellow" && COLORS.colorDark} !important;
+  color: ${(props) => props.important === "dark" && COLORS.colorWhite} !important;
   width: 95%;
   height: 60px;
   border-radius: 5px;
@@ -32,10 +28,8 @@ export const StyledDeleteIcon = styled(DeleteIcon)`
 `;
 
 export const ImportantIcon = styled(LabelImportantRoundedIcon)`
-  color: ${(props: { important: string }) =>
-    props.important === "yellow" && COLORS.colorYellow} !important;
-  color: ${(props: { important: string }) =>
-    props.important === "dark" && COLORS.colorDark} !important;
+  color: ${(props) => props.important === "yellow" && COLORS.colorYellow} !important;
+  color: ${(props) => props.important === "dark" && COLORS.colorDark} !important;
 `;
 
 export const ImportantText = styled.p`
@@ -48,14 +42,10 @@ export const ImportantText = styled.p`
 `;
 
 export const DateTimeBox = styled(Box)`
-  background: ${(props: { important: string }) =>
-    props.important === "yellow" && COLORS.colorYellow} !important;
-  background: ${(props: { important: string }) =>
-    props.important === "dark" && COLORS.colorDark} !important;
-  color: ${(props: { important: string }) =>
-    props.important === "yellow" && COLORS.colorDark} !important;
-  color: ${(props: { important: string }) =>
-    props.important === "dark" && COLORS.colorWhite} !important;
+  background: ${(props) => props.important === "yellow" && COLORS.colorYellow} !important;
+  background: ${(props) => props.important === "dark" && COLORS.colorDark} !important;
+  color: ${(props) => props.important === "yellow" && COLORS.colorDark} !important;
+  color: ${(props) => props.important === "dark" && COLORS.colorWhite} !important;
   display: flex;
   justify-content: center;
   align-items: center;
