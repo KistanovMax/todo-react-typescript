@@ -1,0 +1,15 @@
+GET http://localhost:5000/todos HTTP/1.1
+
+###
+POST http://localhost:5000/todos HTTP/1.1
+Content-Type: application/json
+
+{
+    "text": "Express",
+    "date": "04.04.2021",
+    "time": "14:30",
+    "important": true
+}
+
+###
+DELETE  http://localhost:5000/todos/600dd29b6027f609440965bd/ HTTP/1.1
