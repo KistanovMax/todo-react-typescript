@@ -26,7 +26,6 @@ export default function NewTodoModal({ handleAdd, handleClose, todos }) {
 
   useEffect(() => setText(""), [todos]);
 
-  const id = todos.length + 1;
   let date = "";
   let time = "";
 
@@ -69,7 +68,7 @@ export default function NewTodoModal({ handleAdd, handleClose, todos }) {
               <Button onClick={handleClose} color="primary" variant="outlined" size="small">
                 Cancel
               </Button>
-              <SubmitButton onClick={() => handleAdd(id, text, date, time, important)} variant="contained" size="small">
+              <SubmitButton onClick={() => handleAdd(text, date, time, important)} variant="contained" size="small">
                 Save
               </SubmitButton>
             </ButtonsBox>

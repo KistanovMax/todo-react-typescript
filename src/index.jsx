@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import store from "./redux/store";
 import { ThemeProvider } from "@material-ui/core";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
@@ -23,17 +21,15 @@ export default function App() {
   };
 
   return (
-    <Provider store={store}>
-      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
-        <ThemeProvider theme={MAIN_THEME}>
-          <ModalConText.Provider value={{ open, setOpen }}>
-            <Header />
-            <TodoList />
-            <Footer handleOpen={handleOpen} />
-          </ModalConText.Provider>
-        </ThemeProvider>
-      </MuiPickersUtilsProvider>
-    </Provider>
+    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={locale}>
+      <ThemeProvider theme={MAIN_THEME}>
+        <ModalConText.Provider value={{ open, setOpen }}>
+          <Header />
+          <TodoList />
+          <Footer handleOpen={handleOpen} />
+        </ModalConText.Provider>
+      </ThemeProvider>
+    </MuiPickersUtilsProvider>
   );
 }
 
