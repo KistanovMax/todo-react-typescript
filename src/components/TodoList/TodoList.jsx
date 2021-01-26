@@ -1,38 +1,48 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
+import ModalConText from "../../context";
 import TodoItem from "../TodoItem/TodoItem";
 import NewTodoModal from "../NewTodoModal/NewTodoModal";
-import ModalConText from "../../context";
+import { getTodos, addTodo, deleteTodo } from "../../redux/actions/actions";
 
 import { StyledList } from "./styled";
 
 export default function TodoList() {
   const { setOpen } = useContext(ModalConText);
-  const [todos, setTodos] = useState([]);
+
+  const todos = useSelector((state) => state.Data);
+
+  const dispatch = useDispatch();
+  const getCloudTodos = useCallback(() => {
+    dispatch(getTodos());
+  }, [dispatch]);
 
   const handleAdd = (text, date, time, important) => {
     if (text) {
+      dispatch(addTodo(text, date, time, important));
       axios.post("http://localhost:5000/todos", { text, date, time, important });
       handleClose();
     }
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/todos").then(({ data }) => {
-      setTodos(data);
-    });
-  }, [todos]);
+    getCloudTodos();
+  }, [getCloudTodos]);
+
+  console.log(todos);
 
   const handleDelete = (id) => {
     axios.delete(`http://localhost:5000/todos/${id}`);
+    dispatch(deleteTodo(id));
   };
 
   const handleClose = () => setOpen(false);
 
   return (
     <>
-      <NewTodoModal handleAdd={handleAdd} handleClose={handleClose} />
+      <NewTodoModal handleAdd={handleAdd} handleClose={handleClose} todos={todos} />
       <StyledList display="flex" flexDirection="column" alignItems="center">
         {todos.map(({ _id, text, date, time, important }) => (
           <TodoItem
