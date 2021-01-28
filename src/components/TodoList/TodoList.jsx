@@ -1,6 +1,5 @@
 import React, { useCallback, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 
 import ModalConText from "../../context";
 import TodoItem from "../TodoItem/TodoItem";
@@ -22,7 +21,6 @@ export default function TodoList() {
   const handleAdd = (text, date, time, important) => {
     if (text) {
       dispatch(addTodo(text, date, time, important));
-      axios.post("http://localhost:5000/todos", { text, date, time, important });
       handleClose();
     }
   };
@@ -34,7 +32,6 @@ export default function TodoList() {
   console.log(todos);
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/todos/${id}`);
     dispatch(deleteTodo(id));
   };
 
