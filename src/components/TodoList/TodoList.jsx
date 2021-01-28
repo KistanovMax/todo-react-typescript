@@ -29,7 +29,7 @@ export default function TodoList() {
     getCloudTodos();
   }, [getCloudTodos]);
 
-  console.log(todos);
+  // console.log(todos);
 
   const handleDelete = (id) => {
     dispatch(deleteTodo(id));

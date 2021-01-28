@@ -36,7 +36,7 @@ export default function NewTodoModal({ handleAdd, handleClose, todos }) {
 
   return (
     <Box>
-      <StyledModal open={open} onClose={handleClose} aria-labelledby="simple-modal-title">
+      <StyledModal open={open} onClose={() => handleClose(setText(""))} aria-labelledby="simple-modal-title">
         <ModalContent>
           <ModalTitle id="simple-modal-title">NEW TODO</ModalTitle>
           <StyledTextField
@@ -65,7 +65,7 @@ export default function NewTodoModal({ handleAdd, handleClose, todos }) {
               labelPlacement="end"
             />
             <ButtonsBox>
-              <Button onClick={handleClose} color="primary" variant="outlined" size="small">
+              <Button onClick={() => handleClose(setText(""))} color="primary" variant="outlined" size="small">
                 Cancel
               </Button>
               <SubmitButton onClick={() => handleAdd(text, date, time, important)} variant="contained" size="small">
