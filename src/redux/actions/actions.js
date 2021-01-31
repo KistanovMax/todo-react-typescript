@@ -1,38 +1,26 @@
 import axios from "axios";
 
-export const GET_TODOS = "GET_TODOS";
+export const FETCH_TODOS_REQUEST = "FETCH_TODOS_REQUEST";
+export const FETCH_TODOS_SUCCESS = "FETCH_TODOS_SUCCESS";
+export const FETCH_TODOS_FAILURE = "FETCH_TODOS_FAILURE";
 
-export const getTodos = () => {
+export const fetchTodos = () => {
   return async (dispatch) => {
-    await axios.get("/todos").then(({ data }) => {
-      dispatch({
-        type: GET_TODOS,
-        payload: data,
-      });
+    dispatch({
+      type: FETCH_TODOS_REQUEST,
     });
-  };
-};
-
-export const addTodo = (text, date, time, important) => {
-  return async (dispatch) => {
-    await axios.post("/todos", { text, date, time, important });
-    await axios.get("/todos").then(({ data }) => {
-      dispatch({
-        type: GET_TODOS,
-        payload: data,
+    try {
+      await axios.get("/todos").then(({ data }) => {
+        dispatch({
+          type: FETCH_TODOS_SUCCESS,
+          payload: data,
+        });
       });
-    });
-  };
-};
-
-export const deleteTodo = (id) => {
-  return async (dispatch) => {
-    await axios.delete(`/todos/${id}`);
-    await axios.get("/todos").then(({ data }) => {
+    } catch ({ message }) {
       dispatch({
-        type: GET_TODOS,
-        payload: data,
+        type: FETCH_TODOS_FAILURE,
+        payload: message,
       });
-    });
+    }
   };
 };
